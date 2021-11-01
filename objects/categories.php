@@ -8,7 +8,7 @@
             $this->conn = $db;
        }
 
-       function getCategories()
+       public function getCategories()
        {
             try {
                 $query = 'SELECT id, name FROM '.$this->tablename.' ORDER BY name';
@@ -20,5 +20,6 @@
                 throw new Exception($th->getMessage());                
             }
        }
+
     }
 ?>
