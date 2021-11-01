@@ -16,7 +16,7 @@
             $this->conn = $db;
         }
 
-        public function create($qery='', $params=[]){
+        public function create($query='', $params=[]){
             $query = "INSERT INTO " . $this->tablename . " SET name=:name, price=:price, description=:description, category_id=:category_id, created=:created";
             $stmt = $this->conn->prepare($query);
             // posted values
@@ -42,19 +42,12 @@
             }
         }
 
-        public function readAll($from_record_num, $records_per_page){
-            $query = "SELECT
-                        id, name, description, price, category_id
-                    FROM
-                        " . $this->tablename . "
-                    ORDER BY
-                        name ASC
-                    LIMIT
-                        {$from_record_num}, {$records_per_page}";
-          
-            $stmt = $this->conn->prepare( $query );
+        public function readAll($limit, $offset)
+        {
+            $query = "SELECT name, price, description, category_id FROM ".$this->tablename." ORDER BY
+            name ASC LIMIT {$limit} OFFSET {$offset}";
+            $stmt = $this->conn->prepare($query);
             $stmt->execute();
-          
             return $stmt;
         }
     }
