@@ -11,7 +11,6 @@
         public function getConn(){
             try {
                 $this->conn = new PDO("mysql:host={$this->dbhost};dbname={$this->dbname};",$this->username, $this->password);
-                echo "Conn good";
             } catch (Exception $e) {
                 throw new Exception($e->getMessage());
             }
