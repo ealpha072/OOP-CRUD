@@ -23,10 +23,12 @@
 
        public function readName()
         {
-            $query = "SELECT name from ".$this->tablename."WHERE id=:id LIMIT 1";
+            $query = "SELECT name from ".$this->tablename." WHERE id=:id LIMIT 1";
             $stmt = $this->conn->prepare($query);
             $stmt->execute(array(':id'=>$this->id));
-            return $stmt;
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->name = $results['name'];
+            
         }
     }
 ?>
