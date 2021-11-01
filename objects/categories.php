@@ -20,5 +20,13 @@
                 throw new Exception($th->getMessage());                
             }
        }
+
+       public function readName()
+        {
+            $query = "SELECT name from ".$this->tablename."WHERE id=:id LIMIT 1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute(array(':id'=>$this->id));
+            return $stmt;
+        }
     }
 ?>
