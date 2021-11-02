@@ -61,5 +61,44 @@
             return $total_records;
         }
 
+        public function readOne()
+        {
+            $query = "SELECT id, name, price, description, category_id FROM ".$this->tablename." WHERE id=:id LIMIT 0,1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute(array(':id'=>$this->id));
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $this->name = $results['name'];
+            $this->price = $results['price'];
+            $this->description = $results['description'];
+            $this->category_id = $results['category_id'];
+        }
+
+        public function update()
+        {
+            $query = "UPDATE ".$this->tablename." SET name = :name, price = :price, description = :description,
+            category_id  = :category_id WHERE id=:id";
+            $stmt = $this->conn->prepare($query);
+
+            $this->name=htmlspecialchars(strip_tags($this->name));
+            $this->price=htmlspecialchars(strip_tags($this->price));
+            $this->description=htmlspecialchars(strip_tags($this->description));
+            $this->category_id=htmlspecialchars(strip_tags($this->category_id));
+            $this->id=htmlspecialchars(strip_tags($this->id));
+
+            $params = [
+                ':name' =>$this->name,
+                ':price' =>$this->price,
+                ':description' =>$this->description,
+                ':category_id'  =>$this->category_id,
+                ':id'=>$this->id
+            ];
+            
+            if($stmt->execute($params)){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 ?>
