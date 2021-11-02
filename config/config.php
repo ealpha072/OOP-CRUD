@@ -16,17 +16,5 @@
             }
             return $this->conn;
         }
-
-        /*public function __construct($dbhost='localhost', $username='root',$password='', $dbname='testing'){
-            try {
-              $this->conn = new PDO("mysql:host={$dbhost};dbname={$dbname};",$username, $password);
-              $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-              return $this->conn;
-              //echo 'Connect okay';
-            } catch (Exception $e) {
-              throw new Exception($e->getMessage());  
-            }
-        }*/
     }
 ?>

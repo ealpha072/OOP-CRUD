@@ -1,5 +1,5 @@
 <?php    
-    $page_title = 'Update Product';
+    $page_title = 'Read Product';
 
     include_once 'header.php';
     include_once '../config/config.php';
@@ -7,7 +7,7 @@
     include_once '../objects/products.php';
 
 
-    $id = (isset($_GET['id'])) ? $_GET['id'] : die('Missing id info');
+    $id = isset($_GET['id']) ? $_GET['id'] : die('Missing id info');
 
     //create new database
     $database = new Database();
@@ -19,6 +19,13 @@
 
     $product->id = $id;
     $product->readOne();
+    
+    // read products button
+    echo "<div class='right-button-margin'>";
+        echo "<a href='index.php' class='btn btn-primary pull-right'>";
+            echo "<span class='glyphicon glyphicon-list'></span> Read Products";
+        echo "</a>";
+    echo "</div>";
 
     echo "<table class='table table-hover table-responsive table-bordered'>";
   
