@@ -44,7 +44,7 @@
 
         public function readAll($limit, $offset)
         {
-            $query = "SELECT name, price, description, category_id FROM ".$this->tablename." ORDER BY
+            $query = "SELECT id, name, price, description, category_id FROM ".$this->tablename." ORDER BY
             name ASC LIMIT {$limit} OFFSET {$offset}";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();

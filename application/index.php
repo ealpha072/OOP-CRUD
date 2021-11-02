@@ -51,11 +51,24 @@
     
                     echo "<td>";
                         // read one, edit and delete button will be here
+                        echo "<a href='read_one.php?id={$id}' class='btn btn-primary left-margin'>
+                                <span class='glyphicon glyphicon-list'></span> Read
+                            </a>
+                            
+                            <a href='update_product.php?id={$id}' class='btn btn-info left-margin'>
+                                <span class='glyphicon glyphicon-edit'></span> Edit
+                            </a>
+                            
+                            <a delete-id='{$id}' class='btn btn-danger delete-object'>
+                                <span class='glyphicon glyphicon-remove'></span> Delete
+                            </a>";
                     echo "</td>";
     
                 echo "</tr>";
             }
         echo "</table>";
+    }else{
+        echo "<div class='alert alert-info'>No products found.</div>";
     }
 
 
