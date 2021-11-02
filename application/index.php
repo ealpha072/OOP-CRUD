@@ -12,9 +12,13 @@
     $database = new Database();
     $db = $database->getConn();
     //pagination
-    $page_number = 2;
+    $page_number = ($_GET['page']) ? $_GET['page'] : 1 ;
+
+
+    //$page_number = 2;
     $limit = 5;
     $offset = ($limit * $page_number) - $limit;
+    
     //pass conn to objects
     $category = new Categories($db);
     $product = new Product($db);
@@ -70,7 +74,17 @@
     }else{
         echo "<div class='alert alert-info'>No products found.</div>";
     }
+    //pagination
+    $total_rows = $product->countAll();
+    $total_pages = ceil($total_rows/$limit);
+    $page_link = "<ul class='pagination'>";  
 
+    for ($i=1; $i <=$total_pages; $i++) { 
+        # code...
+        $page_link .= "<li class='page-item'><a class='page-link' href='index.php?page=".$i."'>".$i."</a></li>";
+    }
+
+    echo $page_link."</li>";
 
 
 ?>

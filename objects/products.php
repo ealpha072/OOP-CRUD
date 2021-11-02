@@ -51,5 +51,15 @@
             return $stmt;
         }
 
+        public function countAll()
+        {
+            $query = "SELECT id from ".$this->tablename."";
+            $stmt =$this->conn->prepare($query);
+            $stmt->execute();
+
+            $total_records = $stmt->rowCount();
+            return $total_records;
+        }
+
     }
 ?>
