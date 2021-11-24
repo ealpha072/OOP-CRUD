@@ -1,2 +1,2 @@
 # OOP-CRUD
-A CRUD application(E-commerce mini app) built PHP- OOP principles.
+A CRUD application(E-commerce mini app) built with PHP- (OOP principles).
